@@ -11,12 +11,24 @@ const ResourceList = ({ resource }) => {
     setResources(response.data);
   };
 
-//   arrow function is only called when the values are different
+  //   arrow function is only called when the values are different
   useEffect(() => {
     fetchResource(resource);
   }, [resource]);
 
-  return <div>{resources.length}</div>;
+  const renderList = () => {
+    return <ul>
+      {resources.map(resource => {
+        return <li key={resource.id}>{resource.title}</li>;
+      })}
+    </ul>;
+  };
+
+  return (
+    <div>
+      {renderList()}
+    </div>
+  );
 };
 
 export default ResourceList;
